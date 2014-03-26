@@ -1,0 +1,11 @@
+{
+  "name": "node-sha1-demo",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "test": "node ./index.js"
+  },
+  "dependencies": {
+    "sha1": "~1.1.0"
+  }
+}
