@@ -10,6 +10,7 @@ var raw = 'Ly8gVHlwZSBkZWZpbml0aW9ucyBmb3IgQXN5bmMgMC4xLjIzDQovLyBQcm9q\nZWN0OiB
 var data = new Buffer(raw, 'base64');
 
 var have = [];
+var fail = false;
 
 function step() {
 	for (var i = 0; i < 200; i++) {
@@ -22,6 +23,9 @@ function step() {
 		if (have.indexOf(tmp.hash) < 0) {
 			have.push(tmp.hash);
 			console.log(tmp);
+			if (tmp.hash !== expected) {
+				fail = true;
+			}
 		}
 	}
 }
@@ -32,3 +36,8 @@ setTimeout(step, 100);
 setTimeout(step, 200);
 setTimeout(step, 300);
 setTimeout(step, 400);
+setTimeout(function() {
+	if (fail) {
+		process.exit(1);
+	}
+}, 500);
